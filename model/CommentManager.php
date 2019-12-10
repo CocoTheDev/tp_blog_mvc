@@ -18,7 +18,6 @@ function getComments($postId) {
     return $req;
 }
 
-// Add Comment
 function addComment ($postId,$author, $comment) {
     $db = $this->dbConnect();
     
@@ -33,7 +32,6 @@ function addComment ($postId,$author, $comment) {
     return $req;
 }
 
-// Update Comment
 function updateComment ($commentId, $commentNew) {
     $db = $this->dbConnect();
 
@@ -45,6 +43,21 @@ function updateComment ($commentId, $commentNew) {
 
     $req->execute(array(
     'commentNew' => $commentNew,
+    'commentId' => $commentId
+    ));
+
+    return $req;
+}
+
+function deleteComment ($commentId) {
+    $db = $this->dbConnect();
+
+    $req = $db->prepare('
+    DELETE FROM comments 
+    WHERE ID = :commentId 
+    ');
+
+    $req->execute(array(
     'commentId' => $commentId
     ));
 

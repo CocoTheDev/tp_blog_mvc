@@ -64,3 +64,18 @@ function updateComment ($commentId, $commentNew) {
     header('Location:index.php');
     require ('view/comment/editComment.php');
 }
+
+function deleteComment ($commentId) {
+    $commentManager = new CommentManager();
+
+    $commentId = nl2br(htmlspecialchars($commentId));
+
+    $store = $commentManager->deleteComment($commentId);
+
+    if ($store == false) {
+        throw new Exception("Impossible de supprimer le commentaire !");
+    }
+
+    header('Location:index.php');
+    require ('view/post/postView.php');
+}

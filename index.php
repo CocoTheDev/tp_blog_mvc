@@ -44,6 +44,16 @@ try {
                 throw new Exception("Édition du commentaire non valide");
             }
         }
+        elseif ($_GET['action'] == 'deleteComment') {
+            if (!empty($_POST['commentId'])) {
+                $commentId = nl2br(htmlspecialchars($_POST['commentId']));
+                deleteComment($commentId);
+            }
+            else {
+                throw new Exception("Suppression du commentaire non validée");
+            }
+        }
+
         else {
             throw new Exception("Nous n'avons pas comprit votre requête.");
         }

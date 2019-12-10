@@ -34,10 +34,17 @@ while ($comment = $comments->fetch())
 
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
 
+    <!-- Update button -->
     <form action="index.php?action=editComment&amp;commentId=<?= $comment['id'] ?>" method="post">
     <input type="hidden" name ="commentId" value="<?= $comment['id'] ?>">
     <input type="hidden" name ="comment" value="<?= $comment['comment'] ?>">
     <input type="submit" value="Éditer">
+    </form>
+
+    <!-- Delete button -->
+    <form action="index.php?action=deleteComment" method="post">
+    <input type="hidden" name ="commentId" value="<?= $comment['id'] ?>">
+    <input type="submit" value="Supprimer">
     </form>
 
     <br><br>
